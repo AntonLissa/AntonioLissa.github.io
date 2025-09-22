@@ -1,154 +1,670 @@
 <!DOCTYPE html>
 <html lang="it">
 <head>
-<title>Antonio Lissa Lattanzio - CV & Portfolio</title>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
-<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700&family=Open+Sans&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-<style>
-html, body, h1, h2, h3, h4, h5, h6 { font-family: "Montserrat", sans-serif; }
-body { background-color: #0f0f23; color: #e0e0e0; }
-.w3-light-grey { background-color: #1a1a2e !important; }
-.w3-white { background-color: #1a1a2e !important; color: #e0e0e0; }
-.w3-teal { background-color: #4b0082 !important; } /* viola scuro */
-.w3-text-teal { color: #4b0082 !important; }
-.w3-hover-opacity:hover { opacity: 0.8; }
-.skill-bar { background-color: #333366; border-radius: 12px; overflow: hidden; }
-.skill-level { background-color: #4b0082; height: 24px; text-align: center; line-height: 24px; color: white; }
-a { color: #9a79d6; text-decoration: none; }
-a:hover { text-decoration: underline; }
-.project img { width: 100%; border-radius: 8px; transition: transform 0.3s ease; }
-.project img:hover { transform: scale(1.05); }
-</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Antonio Lissa Lattanzio - Portfolio</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap');
+
+        :root {
+            --primary-color: #f7f7f7;
+            --secondary-color: #a0a0a0;
+            --background-color: #121212;
+            --card-background: #1e1e1e;
+            --accent-color: #64ffda;
+            --font-family: 'Poppins', sans-serif;
+            --box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            --border-radius: 8px;
+        }
+
+        body {
+            font-family: var(--font-family);
+            background-color: var(--background-color);
+            color: var(--primary-color);
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: row;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        a {
+            color: inherit;       
+            text-decoration: none;
+            }
+
+        .language-switcher {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 100;
+        }
+
+        .language-switcher button {
+            background: none;
+            border: 1px solid var(--accent-color);
+            color: var(--accent-color);
+            padding: 5px 10px;
+            font-size: 14px;
+            cursor: pointer;
+            border-radius: 4px;
+            transition: background-color 0.3s, color 0.3s;
+        }
+        
+        .language-switcher button:hover {
+            background-color: var(--accent-color);
+            color: var(--background-color);
+        }
+
+        .sidebar {
+            flex: 0 0 350px;
+            width:500px;
+            background-color: var(--card-background);
+            padding: 40px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            box-shadow: var(--box-shadow);
+            position: fixed;
+            top: 0;
+            left: 0;
+            bottom: 0;
+            overflow-y: auto;
+            animation: slideInLeft 0.8s ease-out;
+            z-index: 10;
+        }
+
+        .profile-pic {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 3px solid var(--accent-color);
+            margin-bottom: 20px;
+            animation: fadeIn 1s ease-in;
+        }
+
+        .profile-name {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--primary-color);
+            text-align: center;
+            margin: 10px 0 0;
+            line-height: 1.2;
+        }
+
+        .profile-title {
+            font-size: 1.2rem;
+            font-weight: 400;
+            color: var(--secondary-color);
+            text-align: center;
+            margin: 5px 0 20px;
+        }
+
+        .contact-info {
+            width: 100%;
+            list-style: none;
+            padding: 0;
+            margin: 20px 0;
+        }
+
+        .contact-info li {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+            color: var(--secondary-color);
+            font-size: 1rem;
+            transition: color 0.3s ease;
+        }
+
+        .contact-info li:hover {
+            color: var(--primary-color);
+        }
+
+        .contact-info li a {
+            color: inherit;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .contact-info li a:hover {
+            color: var(--accent-color);
+        }
+
+        .contact-info .icon {
+            font-size: 1.2rem;
+            margin-right: 10px;
+            color: var(--accent-color);
+        }
+
+        .social-links {
+            margin-top: 20px;
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+        }
+
+        .social-links a {
+            color: var(--secondary-color);
+            font-size: 1.5rem;
+            transition: color 0.3s ease, transform 0.3s ease;
+        }
+
+        .social-links a:hover {
+            color: var(--accent-color);
+            transform: translateY(-5px);
+        }
+
+        .main-content {
+            flex: 1;
+            margin-left: 550px;
+            padding: 40px;
+            animation: fadeIn 1s ease-in;
+        }
+
+        .section {
+            background-color: var(--card-background);
+            padding: 30px;
+            border-radius: var(--border-radius);
+            margin-bottom: 30px;
+            box-shadow: var(--box-shadow);
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeInUp 0.8s forwards;
+        }
+        
+        .section-title {
+            font-size: 2.2rem;
+            font-weight: 600;
+            color: var(--accent-color);
+            margin-bottom: 25px;
+            border-bottom: 2px solid var(--accent-color);
+            padding-bottom: 10px;
+        }
+
+        .bio-text, .education-item p, .experience-item p {
+            color: var(--secondary-color);
+        }
+
+        .education-item, .experience-item {
+            margin-bottom: 25px;
+            border-left: 3px solid var(--accent-color);
+            padding-left: 20px;
+            position: relative;
+        }
+
+        .education-item h3, .experience-item h3 {
+            font-size: 1.5rem;
+            color: var(--primary-color);
+            margin: 0;
+        }
+
+        .education-item h4, .experience-item h4 {
+            font-size: 1.2rem;
+            color: var(--secondary-color);
+            margin: 5px 0;
+        }
+        
+        .education-item .date, .experience-item .date {
+            font-style: italic;
+            color: var(--secondary-color);
+            font-size: 0.9rem;
+        }
+
+        .education-item::before, .experience-item::before {
+            content: '';
+            position: absolute;
+            left: -8px;
+            top: 5px;
+            width: 15px;
+            height: 15px;
+            background-color: var(--accent-color);
+            border-radius: 50%;
+        }
+
+        .skills-list {
+            list-style: none;
+            padding: 0;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+
+        .skill-item {
+            background-color: var(--background-color);
+            color: var(--primary-color);
+            padding: 10px 15px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            border: 1px solid var(--accent-color);
+            transition: transform 0.3s ease, background-color 0.3s;
+        }
+        
+        .skill-item:hover {
+            transform: translateY(-5px);
+            background-color: rgba(100, 255, 218, 0.1);
+        }
+        
+        .languages-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        .language-item {
+            margin-bottom: 10px;
+        }
+
+        .language-item strong {
+            color: var(--accent-color);
+        }
+
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+        }
+
+        .project-card {
+            background-color: var(--background-color);
+            padding: 25px;
+            border-radius: var(--border-radius);
+            box-shadow: var(--box-shadow);
+            border: 1px solid transparent;
+            transition: border-color 0.3s ease, transform 0.3s ease;
+        }
+
+        .project-card:hover {
+            border-color: var(--accent-color);
+            transform: translateY(-5px);
+        }
+
+        .project-card h3 {
+            font-size: 1.5rem;
+            color: var(--primary-color);
+            margin-top: 0;
+        }
+
+        .project-card p {
+            font-size: 1rem;
+            color: var(--secondary-color);
+        }
+
+        .project-card .links a {
+            color: var(--accent-color);
+            text-decoration: none;
+            font-weight: 600;
+            margin-right: 15px;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes slideInLeft {
+            from { transform: translateX(-100%); }
+            to { transform: translateX(0); }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        @media (max-width: 992px) {
+            body {
+                flex-direction: column;
+            }
+            
+            .sidebar {
+                position: relative;
+                flex: none;
+                width: 100%;
+                min-height: auto;
+                padding: 30px 20px;
+                box-sizing: border-box;
+                animation: none;
+            }
+            
+            .main-content {
+                margin-left: 0;
+                padding: 20px;
+            }
+            
+            .profile-pic {
+                width: 120px;
+                height: 120px;
+            }
+            
+            .profile-name {
+                font-size: 2rem;
+            }
+            
+            .profile-title {
+                font-size: 1rem;
+            }
+            
+            .contact-info, .social-links {
+                justify-content: center;
+                margin-top: 20px;
+            }
+            
+            .contact-info li {
+                justify-content: center;
+            }
+            
+            .language-switcher {
+                position: absolute;
+                top: 10px;
+                right: 10px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .sidebar {
+                padding: 25px 15px;
+            }
+            
+            .profile-pic {
+                width: 100px;
+                height: 100px;
+                margin-bottom: 15px;
+            }
+            
+            .profile-name {
+                font-size: 1.8rem;
+                margin-bottom: 5px;
+            }
+            
+            .profile-title {
+                font-size: 0.95rem;
+                margin-bottom: 15px;
+            }
+            
+            .contact-info {
+                margin: 15px 0;
+            }
+            
+            .contact-info li {
+                font-size: 0.9rem;
+                margin-bottom: 12px;
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .contact-info li .icon {
+                font-size: 1rem;
+                margin-right: 0;
+                margin-bottom: 5px;
+            }
+            
+            .social-links {
+                margin-top: 15px;
+                gap: 15px;
+            }
+            
+            .section {
+                padding: 20px;
+                margin-bottom: 20px;
+            }
+            
+            .section-title {
+                font-size: 1.8rem;
+            }
+            
+            .projects-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .language-switcher {
+                position: relative;
+                top: 0;
+                right: 0;
+                margin-bottom: 15px;
+                text-align: center;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .main-content {
+                padding: 15px;
+            }
+            
+            .sidebar {
+                padding: 20px 10px;
+            }
+            
+            .profile-name {
+                font-size: 1.6rem;
+            }
+            
+            .profile-title {
+                font-size: 0.85rem;
+            }
+            
+            .contact-info li {
+                font-size: 0.85rem;
+            }
+            
+            .section {
+                padding: 15px;
+            }
+            
+            .section-title {
+                font-size: 1.6rem;
+            }
+            
+            .education-item, .experience-item {
+                padding-left: 15px;
+            }
+            
+            .education-item h3, .experience-item h3 {
+                font-size: 1.3rem;
+            }
+            
+            .education-item h4, .experience-item h4 {
+                font-size: 1.1rem;
+            }
+        }
+    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
 <body>
 
-<!-- Page Container -->
-<div class="w3-content w3-margin-top" style="max-width:1400px;">
-
-  <!-- The Grid -->
-  <div class="w3-row-padding">
-  
-    <!-- Left Column -->
-    <div class="w3-third">
-    
-      <div class="w3-white w3-text-grey w3-card-4">
-        <div class="w3-display-container">
-          <img src="/w3images/avatar_hat.jpg" style="width:100%" alt="Avatar">
-          <div class="w3-display-bottomleft w3-container w3-text-white">
-            <h2>Antonio Lissa Lattanzio</h2>
-          </div>
+    <div class="sidebar">
+        <div class="language-switcher">
+            <button id="lang-it">IT</button>
+            <button id="lang-en">EN</button>
         </div>
-        <div class="w3-container">
-          <p><i class="fa fa-briefcase fa-fw w3-margin-right w3-large w3-text-teal"></i>Studente / Ricercatore IA e Robotica</p>
-          <p><i class="fa fa-home fa-fw w3-margin-right w3-large w3-text-teal"></i>Italia</p>
-          <p><i class="fa fa-envelope fa-fw w3-margin-right w3-large w3-text-teal"></i>antonio@example.com</p>
-          <p><i class="fa fa-phone fa-fw w3-margin-right w3-large w3-text-teal"></i>+39 123 456 7890</p>
-          <hr>
+        
+        <img src="img/img_sito_2.png" alt="Antonio Lissa Lattanzio" class="profile-pic">
+        <h1 class="profile-name" data-it="Antonio Lissa Lattanzio" data-en="Antonio Lissa Lattanzio">Antonio Lissa Lattanzio</h1>
+        <p class="profile-title" data-it="Studente di Ingegneria AI & Robotica" data-en="AI & Robotics Engineering Student">Studente di Ingegneria AI & Robotica</p>
 
-          <p class="w3-large"><b><i class="fa fa-asterisk fa-fw w3-margin-right w3-text-teal"></i>Skills</b></p>
-          <p>Python</p>
-          <div class="skill-bar">
-            <div class="skill-level" style="width:90%">90%</div>
-          </div>
-          <p>C++</p>
-          <div class="skill-bar">
-            <div class="skill-level" style="width:80%">80%</div>
-          </div>
-          <p>Machine Learning</p>
-          <div class="skill-bar">
-            <div class="skill-level" style="width:75%">75%</div>
-          </div>
-          <p>Robotica</p>
-          <div class="skill-bar">
-            <div class="skill-level" style="width:60%">60%</div>
-          </div>
-          <br>
+        <ul class="contact-info">
+            <li><i class="fas fa-map-marker-alt icon"></i><span data-it="Via Alento, 51 66012 Casalincontrada (CH)" data-en="Via Alento, 51 66012 Casalincontrada (CH)">Via Alento, 51 66012 Casalincontrada (CH)</span></li>
+            <li><i class="fas fa-phone icon"></i><a href="tel:+393279383350" data-it="+39 327 938 3350" data-en="+39 327 938 3350">+39 327 938 3350</a></li>
+            <li><i class="fas fa-envelope icon"></i><a href="mailto:antoniolissalattanzio@gmail.com" data-it="antoniolissalattanzio@gmail.com" data-en="antoniolissalattanzio@gmail.com">antoniolissalattanzio@gmail.com</a></li>
+            <li><i class="fas fa-envelope icon"></i><a href="mailto:antoniolissalattanzio@pec.it" data-it="antoniolissalattanzio@pec.it" data-en="antoniolissalattanzio@pec.it">antoniolissalattanzio@pec.it</a></li>
+        </ul>
 
-          <p class="w3-large w3-text-theme"><b><i class="fa fa-globe fa-fw w3-margin-right w3-text-teal"></i>Languages</b></p>
-          <p>Italian</p>
-          <div class="skill-bar">
-            <div class="skill-level" style="width:100%">100%</div>
-          </div>
-          <p>English</p>
-          <div class="skill-bar">
-            <div class="skill-level" style="width:80%">80%</div>
-          </div>
-          <br>
+        <div class="social-links">
+           <a href="https://github.com/AntonLissa" target="_blank" aria-label="GitHub"><i class="fab fa-github"></i></a>
         </div>
-      </div><br>
-
     </div>
 
-    <!-- Right Column -->
-    <div class="w3-twothird">
-    
-      <div class="w3-container w3-card w3-white w3-margin-bottom">
-        <h2 class="w3-text-teal w3-padding-16"><i class="fa fa-suitcase fa-fw w3-margin-right w3-xxlarge"></i>Work Experience</h2>
-        <div class="w3-container">
-          <h5 class="w3-opacity"><b>Stage Ingegneria Informatica / Università</b></h5>
-          <h6 class="w3-text-teal"><i class="fa fa-calendar fa-fw w3-margin-right"></i>2023 - Attuale</h6>
-          <p>Progetti di ricerca su IA e robotica, sviluppo di algoritmi per la navigazione autonoma.</p>
-          <hr>
-        </div>
-      </div>
+    <div class="main-content">
+        
+        <section class="section" id="bio">
+            <h2 class="section-title" data-it="Profilo Professionale" data-en="Professional Profile">Profilo Professionale</h2>
+            <p class="bio-text" data-it="Laureato in Ingegneria dell'Informazione con specializzazione in Intelligenza Artificiale e Robotica (ancora in corso) appassionato di sviluppo di soluzioni innovative nel campo dell'automazione e dell'apprendimento automatico. Forte capacità di problem solving, lavoro in team e adattabilità a contesti multidisciplinari." data-en="A graduate in Information Engineering specializing in Artificial Intelligence and Robotics (currently in progress), passionate about developing innovative solutions in automation and machine learning. Possesses strong problem-solving skills, teamwork abilities, and adaptability to multidisciplinary contexts.">Laureato in Ingegneria dell'Informazione con specializzazione in Intelligenza Artificiale e Robotica (ancora in corso) appassionato di sviluppo di soluzioni innovative nel campo dell'automazione e dell'apprendimento automatico. Forte capacità di problem solving, lavoro in team e adattabilità a contesti multidisciplinari.</p>
+        </section>
 
-      <div class="w3-container w3-card w3-white w3-margin-bottom">
-        <h2 class="w3-text-teal w3-padding-16"><i class="fa fa-certificate fa-fw w3-margin-right w3-xxlarge"></i>Education</h2>
-        <div class="w3-container">
-          <h5 class="w3-opacity"><b>Laurea in Ingegneria Informatica</b></h5>
-          <h6 class="w3-text-teal"><i class="fa fa-calendar fa-fw w3-margin-right"></i>2019 - 2023</h6>
-          <p>Università degli Studi di [Tua Città]. Focus su IA e robotica.</p>
-          <hr>
-        </div>
-        <div class="w3-container">
-          <h5 class="w3-opacity"><b>Master / Corsi Avanzati</b></h5>
-          <h6 class="w3-text-teal"><i class="fa fa-calendar fa-fw w3-margin-right"></i>2023 - Attuale</h6>
-          <p>Approfondimento in intelligenza artificiale e robotica avanzata.</p>
-          <hr>
-        </div>
-      </div>
+        <section class="section" id="education">
+            <h2 class="section-title" data-it="Formazione" data-en="Education">Formazione</h2>
+            <div class="education-item">
+                <h3 data-it="Laurea Magistrale in Intelligenza Artificiale e Robotica" data-en="Master's Degree in Artificial Intelligence and Robotics">Laurea Magistrale in Intelligenza Artificiale e Robotica</h3>
+                <h4 data-it="Università degli Studi La Sapienza, Roma" data-en="Sapienza University of Rome, Italy">Università degli Studi La Sapienza, Roma</h4>
+                <p class="date" data-it="Previsto: 2025/2026" data-en="Expected: 2025/2026">Previsto: 2025/2026</p>
+            </div>
+            <div class="education-item">
+                <h3 data-it="Laurea Triennale in Ingegneria dell'Informazione" data-en="Bachelor's Degree in Information Engineering">Laurea Triennale in Ingegneria dell'Informazione</h3>
+                <h4 data-it="Università degli Studi di L'Aquila" data-en="University of L'Aquila, Italy">Università degli Studi di L'Aquila</h4>
+                <p class="date" data-it="2023 - Voto: 107/110" data-en="2023 - Grade: 107/110">2023 - Voto: 107/110</p>
+                <p data-it="Tesi: 'Selezione delle caratteristiche attraverso Algoritmi Bio-inspired per l'ottimizzazione dei modelli di Machine Learning.' Studio di come tre algoritmi bio-inspired ottimizzano le prestazioni di diversi modelli riducendo le features di alcuni dataset." data-en="Thesis: 'Feature Selection through Bio-inspired Algorithms for Optimizing Machine Learning Models.' Study on how three bio-inspired algorithms optimize the performance of different models by reducing the features of certain datasets.">Tesi: "Selezione delle caratteristiche attraverso Algoritmi Bio-inspired per l'ottimizzazione dei modelli di Machine Learning." Studio di come tre algoritmi bio-inspired ottimizzano le prestazioni di diversi modelli riducendo le features di alcuni dataset.</p>
+            </div>
+            <div class="education-item">
+                <h3 data-it="Diploma di Perito Informatico" data-en="High School Diploma in Computer Science">Diploma di Perito Informatico</h3>
+                <h4 data-it="Istituto d'Istruzione Superiore "Luigi di Savoia" Chieti" data-en=""Luigi di Savoia" High School, Chieti">Istituto d'Istruzione Superiore "Luigi di Savoia" Chieti</h4>
+                <p class="date" data-it="2020 - Voto: 90/100" data-en="2020 - Grade: 90/100">2020 - Voto: 90/100</p>
+            </div>
+        </section>
 
-      <div class="w3-container w3-card w3-white">
-        <h2 class="w3-text-teal w3-padding-16"><i class="fa fa-folder-open fa-fw w3-margin-right w3-xxlarge"></i>Progetti</h2>
-        <div class="w3-row-padding">
-          <div class="w3-third project">
-            <a href="https://github.com/tuoaccount/progetto1" target="_blank">
-              <img src="/w3images/project1.jpg" alt="Progetto 1">
-              <p>Progetto 1 - Robotica mobile</p>
-            </a>
-          </div>
-          <div class="w3-third project">
-            <a href="https://github.com/tuoaccount/progetto2" target="_blank">
-              <img src="/w3images/project2.jpg" alt="Progetto 2">
-              <p>Progetto 2 - Machine Learning</p>
-            </a>
-          </div>
-          <div class="w3-third project">
-            <a href="https://github.com/tuoaccount/progetto3" target="_blank">
-              <img src="/w3images/project3.jpg" alt="Progetto 3">
-              <p>Progetto 3 - Visione artificiale</p>
-            </a>
-          </div>
-        </div>
-      </div>
+        <section class="section" id="experience">
+            <h2 class="section-title" data-it="Esperienze Professionali" data-en="Work Experience">Esperienze Professionali</h2>
+            <div class="experience-item">
+                <h3 data-it="Insegnante di Matematica Sostitutivo" data-en="Substitute Math Teacher">Insegnante di Matematica Sostitutivo</h3>
+                <h4 data-it="Liceo Scientifico Statale 'Augusto Righi', Roma" data-en="'Augusto Righi' State Scientific High School, Rome">Liceo Scientifico Statale 'Augusto Righi', Roma</h4>
+                <p class="date" data-it="Maggio 2025 - Giugno 2025" data-en="May 2025 - June 2025">Maggio 2025 - Giugno 2025</p>
+            </div>
+        </section>
 
+        <section class="section" id="skills">
+            <h2 class="section-title" data-it="Competenze Tecniche" data-en="Technical Skills">Competenze Tecniche</h2>
+            <ul class="skills-list">
+                <li class="skill-item">Java</li>
+                <li class="skill-item">Python</li>
+                <li class="skill-item">C</li>
+                <li class="skill-item">C++</li>
+                <li class="skill-item">SQL</li>
+                <li class="skill-item">HTML</li>
+                <li class="skill-item">CSS</li>
+                <li class="skill-item">PHP</li>
+                <li class="skill-item">Javascript</li>
+                <li class="skill-item">MySQL</li>
+                <li class="skill-item">Deep learning</li>
+                <li class="skill-item">Machine Learning</li>
+            </ul>
+        </section>
+        
+        <section class="section" id="languages">
+            <h2 class="section-title" data-it="Lingue Straniere" data-en="Languages">Lingue Straniere</h2>
+            <ul class="languages-list">
+                <li class="language-item"><strong data-it="Italiano:" data-en="Italian:">Italiano:</strong> <span data-it="Madrelingua" data-en="Native Speaker">Madrelingua</span></li>
+                <li class="language-item"><strong data-it="Inglese:" data-en="English:">Inglese:</strong> B2</li>
+            </ul>
+        </section>
+
+        <section class="section" id="projects">
+            <h2 class="section-title" data-it="Progetti Universitari" data-en="University Projects">Progetti Universitari</h2>
+            <div class="projects-grid">
+                <div class="project-card">
+                    <h3 data-it="Solar flare forecast" data-en="Solar flare forecast">Solar flare forecast</h3>
+                    <p data-it="Predire il verificarsi di un brillamento solare da magnetogrammi usando CNN, LSTM, encoder-decoder, vision-transformer." data-en="Predicting the occurrence of a solar flare from magnetograms using  CNN, LSTM, encoder-decoder, vision-transformer.">Predire il verificarsi di un brillamento solare da magnetogrammi.</p>
+                </div>
+                <div class="project-card">
+                    <a href="https://github.com/AntonLissa/trajectory_prediction" target="_blank" class="links">
+                    <h3 data-it="Trajectory prediction" data-en="Trajectory prediction">Trajectory prediction</h3>
+                    <p data-it="Predire le traiettorie delle auto in un incrocio usando YOLO e LSTM." data-en="Predicting the trajectories of cars at an intersection using YOLO and LSTM.">Predire le traiettorie delle auto in un incrocio.</p>
+                    </a>
+                </div>
+                <div class="project-card">
+                    <a href="https://github.com/AntonLissa/GraphicsProject" target="_blank" class="links">
+                    <h3 data-it="F1 simulator" data-en="F1 simulator">F1 simulator</h3>
+                    <p data-it="Simulatore realistico con fisica di auto da corsa." data-en="A realistic racing car simulator with accurate physics.">Simulatore realistico con fisica di auto da corsa.</p>
+                    </a>
+                </div>
+                <div class="project-card">
+                    <a href="https://github.com/AntonLissa/cultural_classification_nlp" target="_blank" class="links">
+                    <h3 data-it="Cultural classification" data-en="Cultural classification">Cultural classification</h3>
+                    <p data-it="Classificare l'appartenenza culturale di voci di wikidata." data-en="Classifying the cultural affiliation of wikidata entries.">Classificare l'appartenenza culturale di voci di wikidata.</p>
+                    </a>
+                </div>
+                <div class="project-card">
+                    <a href="https://github.com/AntonLissa/oldIT2modIT" target="_blank" class="links"> 
+                    <h3 data-it="Old italian to modern italian" data-en="Old italian to modern italian">Old italian to modern italian</h3>
+                    <p data-it="Metodi IA per traduzione da italiano volgare a moderno." data-en="AI methods for translating from archaic to modern Italian.">Metodi IA per traduzione da italiano volgare a moderno.</p>
+                    </a>
+                </div>
+                <div class="project-card">
+                    <a href="https://github.com/AntonLissa/trajectory_prediction" target="_blank" class="links">
+                    <h3 data-it="Reinforcement learning" data-en="Reinforcement learning">Reinforcement learning</h3>
+                    <p data-it="Confronto tra algoritmi di RL per una simulazione multiagente." data-en="Comparison of RL algorithms for a multi-agent simulation.">Confronto tra algoritmi di RL per una simulazione multiagente.</p>
+                    </a>
+                </div>
+                <div class="project-card">
+                    <h3 data-it="Food rescue" data-en="Food rescue">Food rescue</h3>
+                    <p data-it="Sito web ispirato da Too Good To Go." data-en="Website inspired by Too Good To Go.">Sito web ispirato da Too Good To Go.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="section" id="other-info">
+            <h2 class="section-title" data-it="Ulteriori Informazioni" data-en="Additional Information">Ulteriori Informazioni</h2>
+            <ul style="color: var(--secondary-color);">
+                <li data-it="Disponibilità a trasferte" data-en="Willingness to travel">Disponibilità a trasferte</li>
+                <li data-it="Brevetto di Volo 'VDS'" data-en="'VDS' Flight License">Brevetto di Volo "VDS"</li>
+                <li data-it="Patente B" data-en="Driving License B">Patente B</li>
+                <li data-it="Porto d'armi" data-en="Firearm License">Porto d'armi</li>
+            </ul>
+        </section>
+        
     </div>
-    
-  </div>
-  
-</div>
 
-<footer class="w3-container w3-teal w3-center w3-margin-top">
-  <p>Seguimi sui social:</p>
-  <i class="fa fa-facebook-official w3-hover-opacity"></i>
-  <i class="fa fa-instagram w3-hover-opacity"></i>
-  <i class="fa fa-twitter w3-hover-opacity"></i>
-  <i class="fa fa-linkedin w3-hover-opacity"></i>
-  <p>Powered by <a href="https://www.w3schools.com/w3css/default.asp" target="_blank">w3.css</a></p>
-</footer>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const langButtons = document.querySelectorAll('.language-switcher button');
+            const elements = document.querySelectorAll('[data-it], [data-en]');
+            
+            const setLanguage = (lang) => {
+                document.documentElement.lang = lang;
+                elements.forEach(el => {
+                    if (el.dataset[lang]) {
+                        el.textContent = el.dataset[lang];
+                    }
+                });
+            };
 
+            langButtons.forEach(button => {
+                button.addEventListener('click', () => {
+                    setLanguage(button.id.replace('lang-', ''));
+                });
+            });
+
+            const observer = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.animationDelay = `${entry.target.dataset.delay || 0}s`;
+                        entry.target.style.animationPlayState = 'running';
+                        entry.target.style.opacity = '1';
+                        entry.target.style.transform = 'translateY(0)';
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, {
+                root: null,
+                rootMargin: '0px',
+                threshold: 0.1
+            });
+
+            const sections = document.querySelectorAll('.section');
+            sections.forEach((section, index) => {
+                section.dataset.delay = index * 0.2;
+                observer.observe(section);
+            });
+
+            setLanguage('it');
+        });
+    </script>
 </body>
 </html>
